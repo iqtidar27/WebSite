@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>External JavaScript Injection</title>
+    <script>
+        // Listen for the startInjection message from the background script
+        window.addEventListener("message", function(event) {
+            console.log('hooking....');
+            if (event.source === window && event.data && event.data.type === "startInjection") {
+                // Inject JavaScript code into the webpage
+                var script = document.createElement('script');
+                script.type = "application/javascript";
+                script.src = 'inject.js'; // Replace with your external JavaScript file URL
+                document.head.appendChild(script);
+                
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- This HTML file is used to inject external JavaScript -->
+    <h1>Capturing Global Variable NameSpace</h1>
+    <p>This HTML file is used to inject external JavaScript!!!!</p>
+</body>
+</html>
